@@ -13,6 +13,8 @@ Flow:
 7. Model training (80% of original data)
 8. Model evaluating (20% of original data)
 
+Data set comes from UCI machine learning data.
+
 Training accuracy: 95.43%
 
 Test accuracy: 96%
