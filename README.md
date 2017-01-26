@@ -10,4 +10,5 @@
 8. Model evaluating (20% of original data)
 
 Training accuracy: 95.43%
+
 Test accuracy: 96%
