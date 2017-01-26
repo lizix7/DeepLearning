@@ -1,5 +1,8 @@
 # DeepLearning
 
+Python+Keras+Theano
+
+Flow:
 1. Data parsing
 2. Data preprocessing
 3. Data shuffling 
