@@ -1,6 +1,10 @@
 # DeepLearning
 
-Python+Keras+Theano
+The data set used here is downloaded from UCI machine learning repository. 
+link is http://archive.ics.uci.edu/ml/datasets/gas+sensors+for+home+activity+monitoring 
+
+The tool I was using is:
+Python2+Keras+Theano (2016)
 
 Flow:
 
@@ -18,3 +22,5 @@ Data set comes from UCI machine learning data.
 Training accuracy: 95.43%
 
 Test accuracy: 96%
+
+Now it is 2017, Python3+PyTorch will be the mainstream.
