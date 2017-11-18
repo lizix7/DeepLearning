@@ -2,9 +2,9 @@
 
 The data set used here is downloaded from UCI machine learning repository. 
  
-The link is http://archive.ics.uci.edu/ml/datasets/gas+sensors+for+home+activity+monitoring 
+Link is http://archive.ics.uci.edu/ml/datasets/gas+sensors+for+home+activity+monitoring 
 
-The tool I was using is:
+Tools are:
 Python2+Keras+Theano (2016)
 
 Flow:
