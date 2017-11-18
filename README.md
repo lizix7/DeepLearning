@@ -1,7 +1,8 @@
 # DeepLearning
 
 The data set used here is downloaded from UCI machine learning repository. 
-link is http://archive.ics.uci.edu/ml/datasets/gas+sensors+for+home+activity+monitoring 
+ 
+The link is http://archive.ics.uci.edu/ml/datasets/gas+sensors+for+home+activity+monitoring 
 
 The tool I was using is:
 Python2+Keras+Theano (2016)
