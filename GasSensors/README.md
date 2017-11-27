@@ -1,4 +1,4 @@
-# DeepLearning
+# Gas Sensors Data Set
 
 The data set used here is downloaded from UCI machine learning repository. 
  
@@ -25,4 +25,4 @@ Test accuracy: 96%
 
 Now it is 2017, Python3+PyTorch will be the mainstream.
 
-My test accuracy: 89%.
+With Pytorch, my test accuracy: 89%.
