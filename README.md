@@ -24,3 +24,5 @@ Training accuracy: 95.43%
 Test accuracy: 96%
 
 Now it is 2017, Python3+PyTorch will be the mainstream.
+
+My test accuracy: 89%.
