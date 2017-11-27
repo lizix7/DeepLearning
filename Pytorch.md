@@ -8,5 +8,5 @@ This is my study notes for Pytorch.
 #### 2. How to one-hot encode your labels
 
 
-#### 4. How to write down your own module 
+#### 3. How to write down your own module 
 
