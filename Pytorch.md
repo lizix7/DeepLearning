@@ -17,7 +17,6 @@ labels_onehot.zero_()
 labels_onehot.scatter_(1,labels,1)
 
 labels_onehot = Variable(labels_onehot)
-
 ```
 
 #### 3. How to write down your own module 
@@ -43,7 +42,6 @@ model = _classifier(input_size,output_size)
 # Optimizer and Loss function
 optimizer = optim.Adam(model.parameters())
 criterion = nn.CrossEntropyLoss()
-
 ```
 
 #### 4. Different loss function
