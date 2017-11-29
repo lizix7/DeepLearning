@@ -4,7 +4,7 @@ This is my study notes for Pytorch.
 
 #### 1. How to use Data Loader.
 
-At first, I thought DataLoader was designed especially for images loading. Then I found I have to use it because the mini batch feature. However, there is no good tutorial online, until I learnt it from [here]: (http://kevin-ho.website/Make-a-Acquaintance-with-Pytorch/).
+At first, I thought DataLoader was designed especially for images loading. Then I found I have to use it because the mini batch feature. However, there is no good tutorial online, until I learnt it from [here](http://kevin-ho.website/Make-a-Acquaintance-with-Pytorch/).
 
 ```
 # Transform the data into Tensor
