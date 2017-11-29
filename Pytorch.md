@@ -4,8 +4,18 @@ This is my study notes for Pytorch.
 
 #### 1. How to use Data Loader.
 
-I learnt this part from the source: http://kevin-ho.website/Make-a-Acquaintance-with-Pytorch/
+At first, I thought DataLoader was designed especially for images loading. Then I found I have to use it because the mini batch feature. However, there is no good tutorial online, until I learnt it from [here]: (http://kevin-ho.website/Make-a-Acquaintance-with-Pytorch/).
 
+```
+# Transform the data into Tensor
+X_train = torch.from_numpy(X_train)
+Y_train = torch.from_numpy(Y_train)
+# Build a dataset with features and labels
+training_samples = utils_data.TensorDataset(X_train,Y_train)
+# Why do we need to use DataLoader?
+# Because we need the mini batch feature
+data_loader = utils_data.DataLoader(training_samples, batch_size=50)
+```
 
 #### 2. How to one-hot encode your labels
 
