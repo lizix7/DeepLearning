@@ -12,7 +12,7 @@ from torch.autograd import Variable
 input_size = 10
 output_size = 3
 hidden_dimension = 64
-num_epochs = 60
+num_epochs = 80
 batch_size = 50
 learning_rate = 0.001
 
@@ -73,33 +73,23 @@ class _classifier(nn.Module):
         super(_classifier, self).__init__()
         self.f1 = nn.Linear(input_size,hidden_dimension)
         self.f2 = nn.Linear(hidden_dimension,10)
-        self.f3 = nn.Linear(10,10)
-        self.f4 = nn.Linear(10,10)
-        self.f5 = nn.Linear(10,10)
-        self.f6 = nn.Linear(10,10)
-        self.f7 = nn.Linear(10,output_size)
+        self.f3 = nn.Linear(10,output_size)
     def forward(self, x):
         x = self.f1(x)
         x = F.relu(x)
         x = self.f2(x)
         x = F.relu(x)
         x = self.f3(x)
-        x = F.relu(x)
-        x = self.f4(x)
-        x = F.relu(x)
-        x = self.f5(x)
-        x = F.relu(x)
-        x = self.f6(x)
-        x = F.relu(x)
-        x = self.f7(x)
-        x = F.softmax(x)
         return x
 
 model = _classifier(input_size,output_size)
 # Optimizer and Loss function
 optimizer = optim.Adam(model.parameters())
-#criterion = nn.CrossEntropyLoss()
-criterion = nn.MultiLabelSoftMarginLoss()
+# For Cross Entropy loss function, the softmax is internally computed.
+criterion = nn.CrossEntropyLoss()
+# For multilabel loss function, the last layer is softmax?
+# At least we can say relu is much worse than softmax.
+#criterion = nn.MultiLabelSoftMarginLoss()
 
 # Train the model
 
@@ -109,27 +99,28 @@ for epoch in range(num_epochs):
         inputs, labels = data
         # Convert numpy array to torch Variable
         inputs = Variable(inputs.type(torch.FloatTensor))
+        labels = Variable(labels)
         # in pytorch, the lable has to be LongTensor
-        labels = torch.LongTensor(labels).view(-1,1)
+        #labels = torch.LongTensor(labels).view(-1,1)
         #print (inputs)
         #print (labels)
         #print (len(labels))
 
         # Convert the labels into one hot encoding
-        labels_onehot = torch.FloatTensor(len(labels),output_size)
-
-        labels_onehot.zero_()
-        labels_onehot.scatter_(1,labels,1.)
-        labels_onehot = Variable(labels_onehot)
+        #labels_onehot = torch.FloatTensor(len(labels),output_size)
+        #labels_onehot = torch.LongTensor(len(labels),output_size)
+        #labels_onehot.zero_()
+        #labels_onehot.scatter_(1,labels,1)
+        #labels_onehot = Variable(labels_onehot)
         # Check the one hot encoding
         #print(labels_onehot)
 
-        # Forward + Backward + Optimize    
+        # Forward + Backward + Optimize   
+        optimizer.zero_grad()  
         outputs = model(inputs)
         #print (outputs)
         # For the loss function, both inputs should be torch.Variable
-        loss = criterion(outputs, labels_onehot)
-        optimizer.zero_grad() 
+        loss = criterion(outputs, labels)
         loss.backward()
         optimizer.step()
         #print (outputs)
