@@ -59,11 +59,13 @@ X_train, X_test, Y_train, Y_test = train_test_split(X_scaled, Y, test_size=0.20,
 
 #print (X_train)
 #print (Y_train)
-
+# Transform the data into Tensor
 X_train = torch.from_numpy(X_train)
 Y_train = torch.from_numpy(Y_train)
-
+# Build a dataset with features and labels
 training_samples = utils_data.TensorDataset(X_train,Y_train)
+# Why do we need to use DataLoader?
+# Because we need the mini batch feature
 data_loader = utils_data.DataLoader(training_samples, batch_size=50)
 
 # create model using torch's nn module
@@ -80,6 +82,9 @@ class _classifier(nn.Module):
         x = self.f2(x)
         x = F.relu(x)
         x = self.f3(x)
+        # In the last layer, you cannot add activation function
+        # Because CrossEntropy has softmax function built-in
+        # If you add x = F.relu(x), the accuracy will be really bad, like 50%. 
         return x
 
 model = _classifier(input_size,output_size)
@@ -97,20 +102,25 @@ for epoch in range(num_epochs):
     for i, data in enumerate(data_loader):
         # Get each batch
         inputs, labels = data
-        # Convert numpy array to torch Variable
+        # Convert Tensors into torch Variable
+        # inputs has to be FloatTensor. So we change the Tensor type.
         inputs = Variable(inputs.type(torch.FloatTensor))
         labels = Variable(labels)
         # in pytorch, the lable has to be LongTensor
+        # This .view(-1,1) is a must if the lost function is MLSML.
         #labels = torch.LongTensor(labels).view(-1,1)
         #print (inputs)
         #print (labels)
         #print (len(labels))
 
         # Convert the labels into one hot encoding
+        # One hot encoding is necessary if loss function is MLSML.
         #labels_onehot = torch.FloatTensor(len(labels),output_size)
         #labels_onehot = torch.LongTensor(len(labels),output_size)
         #labels_onehot.zero_()
         #labels_onehot.scatter_(1,labels,1)
+        # Variable() should never be put in loss criterion(). -- learnt from BUG
+        # It will lose the information if doing so.
         #labels_onehot = Variable(labels_onehot)
         # Check the one hot encoding
         #print(labels_onehot)
@@ -133,6 +143,7 @@ for epoch in range(num_epochs):
 inputs_test = Variable(torch.FloatTensor(X_test))
 targets_test = torch.LongTensor(Y_test)
 outputs_test = model(inputs_test)
+# The index with largest probability is the predicted result
 _, predicts = torch.max(outputs_test.data,1)
     
 # Calculate accuration
