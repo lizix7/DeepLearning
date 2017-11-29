@@ -25,4 +25,7 @@ Test accuracy: 96%
 
 Now it is 2017, Python3+PyTorch will be the mainstream.
 
-With Pytorch, my test accuracy: 89%.
+I am using almost the same flow with Keras+Theano. 
+However, in Pytorch, if you use the loss function as CrossEntropyLoss, it is not necessary to do one-hot encoding for labels.
+With Pytorch, my test accuracy is: 96%, which is the same with previous tools combination.
+Another difference is, I only use three layers in Pytorch to reach this accuracy. But my hidden dimension is 64, which is way larger than the previous one, which is 10.
